@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — HomeSync</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-box">
+
+      <div style="text-align: center; margin-bottom: 20px;">
+        <a href="index.html" style="font-size: 20px; font-weight: bold; color: #2563eb; text-decoration: none;">🏠 HomeSync</a>
+      </div>
+
+      <h2>Create your account</h2>
+      <p class="auth-sub">Already have an account? <a href="login.html">Sign in</a></p>
+
+      <p style="font-size: 12px; font-weight: bold; color: #555; margin-bottom: 7px;">I am a:</p>
+      <div class="role-sel">
+        <div class="role-opt selected" id="role-landlord" onclick="pickRole('landlord')">
+          🏠 Landlord<br>
+          <small style="font-weight: normal; color: #888;">I own property</small>
+        </div>
+        <div class="role-opt" id="role-tenant" onclick="pickRole('tenant')">
+          👤 Tenant<br>
+          <small style="font-weight: normal; color: #888;">I rent property</small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name *</label>
+          <input type="text" placeholder="Juan">
+        </div>
+        <div class="form-group">
+          <label>Last name *</label>
+          <input type="text" placeholder="dela Cruz">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email address *</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Password *</label>
+        <input type="password" placeholder="Minimum 8 characters">
+      </div>
+
+      <div class="form-group" style="display: flex; align-items: flex-start; gap: 8px;">
+        <input type="checkbox" id="terms" checked style="width: auto; margin-top: 3px;">
+        <label for="terms" style="font-size: 12px; color: #555; font-weight: normal;">
+          I agree to the <a href="#" style="color: #2563eb;">Terms</a> and <a href="#" style="color: #2563eb;">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button class="btn-full" onclick="signupRoute()">Create account</button>
+
+      <div class="divider">— or —</div>
+
+      <div class="social-btn">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="16" height="16" alt="Google">
+        Continue with Google
+      </div>
+
+      <p style="text-align: center; font-size: 12px; margin-top: 14px;">
+        <a href="index.html" style="color: #2563eb;">← Back to home</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    var selectedRole = 'landlord';
+
+    function pickRole(role) {
+      selectedRole = role;
+      document.getElementById('role-landlord').className = role === 'landlord' ? 'role-opt selected' : 'role-opt';
+      document.getElementById('role-tenant').className = role === 'tenant' ? 'role-opt selected' : 'role-opt';
+    }
+
+    function signupRoute() {
+      if (selectedRole === 'tenant') {
+        location.href = 'tenant-dashboard.html';
+      } else {
+        location.href = 'landlord-dashboard.html';
+      }
+    }
+  </script>
+
+</body>
+</html>
