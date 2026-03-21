@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landlord Dashboard — HomeSync</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast-wrap"></div>
+
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
+
+    <div class="sb-section">Main</div>
+    <div class="sb-item active" onclick="showPage('overview', this)">📊 Overview</div>
+    <div class="sb-item" onclick="showPage('properties', this)">🏠 Properties</div>
+    <div class="sb-item" onclick="showPage('tenants', this)">👥 Tenants</div>
+    <div class="sb-item" onclick="showPage('tickets', this)">🔧 Tickets <span class="sb-badge red">3</span></div>
+
+    <div class="sb-section">Finance</div>
+    <div class="sb-item" onclick="showPage('payments', this)">💳 Rent &amp; Payments</div>
+    <div class="sb-item" onclick="showPage('reports', this)">📈 Reports</div>
+
+    <div class="sb-section">Manage</div>
+    <div class="sb-item" onclick="showPage('documents', this)">📁 Documents</div>
+    <div class="sb-item" onclick="showPage('messages', this)">💬 Messages <span class="sb-badge">4</span></div>
+    <div class="sb-item" onclick="showPage('notifications', this)">🔔 Notifications <span class="sb-badge">5</span></div>
+    <div class="sb-item" onclick="showPage('support', this)">❓ Support</div>
+    <div class="sb-item" onclick="showPage('settings', this)">⚙️ Settings</div>
+    <div class="sb-item" style="color: #dc2626;" onclick="location.href='login.html'">🚪 Logout</div>
+
+    <a class="sb-foot" href="index.html">
+      <div class="avatar">JD</div>
+      <div>
+        <div class="av-name">Juan dela Cruz</div>
+        <div class="av-role">Landlord · Pro</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <div class="topbar">
+      <div>
+        <h1 id="page-title">Overview</h1>
+        <p id="page-sub">Good morning, Juan 👋</p>
+      </div>
+      <div class="topbar-r">
+        <button class="icon-btn" onclick="showPage('notifications', null)">🔔</button>
+        <div class="avatar" style="cursor:pointer" onclick="showPage('settings', null)">JD</div>
+      </div>
+    </div>
+
+    <div class="db">
+
+      <!-- ===== OVERVIEW ===== -->
+      <div class="dash-page active" id="pg-overview">
+        <div class="stat-row">
+          <div class="sc"><div class="sl">Total Properties</div><div class="sv">12</div><div class="ss">+2 this month</div></div>
+          <div class="sc"><div class="sl">Rent Collected</div><div class="sv">₱124,500</div><div class="ss">96% collected</div></div>
+          <div class="sc"><div class="sl">Open Tickets</div><div class="sv">3</div><div class="ss warn">Needs attention</div></div>
+          <div class="sc"><div class="sl">Active Tenants</div><div class="sv">38</div><div class="ss">96% occupancy</div></div>
+        </div>
+
+        <div class="qa">
+          <button class="qa-btn" onclick="openModal('m-add-property')">➕ Add property</button>
+          <button class="qa-btn" onclick="openModal('m-msg-tenant')">💬 Message tenant</button>
+          <button class="qa-btn" onclick="openModal('m-record-pay')">💳 Record payment</button>
+          <button class="qa-btn" onclick="openModal('m-upload-doc')">📎 Upload document</button>
+          <button class="qa-btn" onclick="openModal('m-new-ticket')">🔧 New ticket</button>
+        </div>
+
+        <div class="grid2">
+          <div class="cc">
+            <h3>Recent Tickets <a onclick="showPage('tickets', null)">View all</a></h3>
+            <table>
+              <tr><td>Unit 4B — Leaking faucet</td><td><span class="badge b-yellow">Open</span></td></tr>
+              <tr><td>Unit 2A — AC not cooling</td><td><span class="badge b-blue">In review</span></td></tr>
+              <tr><td>Unit 7C — Lock fix</td><td><span class="badge b-green">Done</span></td></tr>
+            </table>
+          </div>
+          <div class="cc">
+            <h3>My Properties <a onclick="showPage('properties', null)">View all</a></h3>
+            <table>
+              <tr><td>Sunset Apartments</td><td style="color:#22c55e;font-weight:bold">100%</td></tr>
+              <tr><td>Bayside Residences</td><td style="color:#f59e0b;font-weight:bold">92%</td></tr>
+              <tr><td>Villa Hermosa</td><td style="color:#f59e0b;font-weight:bold">83%</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="cc">
+          <h3>Recent Activity</h3>
+          <table>
+            <tr><td>✅ Rent paid — Marco R. (Unit 3A)</td><td style="color:#aaa;font-size:11px">₱8,500 · 1h ago</td></tr>
+            <tr><td>👤 New tenant added — Ana Torres (Unit 2B)</td><td style="color:#aaa;font-size:11px">Today</td></tr>
+            <tr><td>⚠️ Lease expiring — Unit 5C</td><td style="color:#aaa;font-size:11px">14 days left</td></tr>
+            <tr><td>❌ Overdue — Unit 6B</td><td style="color:#dc2626;font-size:11px">₱7,500 · 3 days late</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== PROPERTIES ===== -->
+      <div class="dash-page" id="pg-properties">
+        <div class="stat-row">
+          <div class="sc"><div class="sl">Total Properties</div><div class="sv">12</div></div>
+          <div class="sc"><div class="sl">Units Occupied</div><div class="sv">26/28</div></div>
+          <div class="sc"><div class="sl">Vacancies</div><div class="sv">2</div><div class="ss warn">Available</div></div>
+          <div class="sc"><div class="sl">Avg. Occupancy</div><div class="sv">93%</div></div>
+        </div>
+        <div class="cc">
+          <h3>All Properties
+            <div class="btn-row">
+              <button class="btn-outline" onclick="openModal('m-filter')">🔍 Filter</button>
+              <button class="btn-blue" onclick="openModal('m-add-property')">➕ Add Property</button>
+            </div>
+          </h3>
+          <table>
+            <thead><tr><th>Property</th><th>Location</th><th>Units</th><th>Occupied</th><th>Monthly Rent</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr class="clickable-row" onclick="openModal('m-property-detail')"><td><strong>Sunset Apartments</strong><br><small style="color:#aaa">Apartment</small></td><td>Quezon City</td><td>8</td><td style="color:#22c55e;font-weight:bold">8/8</td><td>₱68,000</td><td><span class="badge b-green">Active</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-property-detail')"><td><strong>Bayside Residences</strong><br><small style="color:#aaa">Apartment</small></td><td>Pasig</td><td>12</td><td style="color:#f59e0b;font-weight:bold">11/12</td><td>₱96,800</td><td><span class="badge b-green">Active</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-property-detail')"><td><strong>Villa Hermosa</strong><br><small style="color:#aaa">Townhouse</small></td><td>Taguig</td><td>6</td><td style="color:#f59e0b;font-weight:bold">5/6</td><td>₱54,000</td><td><span class="badge b-green">Active</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-property-detail')"><td><strong>Green Park Studios</strong><br><small style="color:#aaa">Single house</small></td><td>Mandaluyong</td><td>2</td><td style="color:#22c55e;font-weight:bold">2/2</td><td>₱22,000</td><td><span class="badge b-green">Active</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== TENANTS ===== -->
+      <div class="dash-page" id="pg-tenants">
+        <div class="stat-row">
+          <div class="sc"><div class="sl">Total Tenants</div><div class="sv">38</div><div class="ss">+3 this month</div></div>
+          <div class="sc"><div class="sl">Active</div><div class="sv">35</div></div>
+          <div class="sc"><div class="sl">Lease Expiring (30d)</div><div class="sv">4</div><div class="ss warn">Needs renewal</div></div>
+          <div class="sc"><div class="sl">Overdue Payments</div><div class="sv">2</div><div class="ss red">Action needed</div></div>
+        </div>
+        <div class="cc">
+          <h3>All Tenants
+            <div class="btn-row">
+              <input type="text" placeholder="Search tenants..." style="padding:7px 11px;border:1px solid #ddd;border-radius:7px;font-size:12px;outline:none">
+              <button class="btn-blue" onclick="openModal('m-add-tenant')">➕ Add Tenant</button>
+            </div>
+          </h3>
+          <table>
+            <thead><tr><th>Tenant</th><th>Unit</th><th>Property</th><th>Rent</th><th>Lease Ends</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr class="clickable-row" onclick="openModal('m-tenant-detail')"><td><strong>Marco Reyes</strong><br><small style="color:#aaa">marco@email.com</small></td><td>Unit 3A</td><td>Sunset Apts</td><td>₱8,500</td><td>Dec 2026</td><td><span class="badge b-green">Active</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-tenant-detail')"><td><strong>Ana Torres</strong><br><small style="color:#aaa">ana@email.com</small></td><td>Unit 2B</td><td>Bayside Res.</td><td>₱9,200</td><td>Mar 2027</td><td><span class="badge b-green">Active</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-tenant-detail')"><td><strong>Lito Cruz</strong><br><small style="color:#aaa">lito@email.com</small></td><td>Unit 7A</td><td>Sunset Apts</td><td>₱9,000</td><td>Jun 2026</td><td><span class="badge b-yellow">Expiring</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-tenant-detail')"><td><strong>Rosa Santos</strong><br><small style="color:#aaa">rosa@email.com</small></td><td>Unit 6B</td><td>Villa Hermosa</td><td>₱7,500</td><td>Aug 2026</td><td><span class="badge b-red">Overdue</span></td></tr>
+              <tr class="clickable-row" onclick="openModal('m-tenant-detail')"><td><strong>Jose Mendoza</strong><br><small style="color:#aaa">jose@email.com</small></td><td>Unit 4A</td><td>Bayside Res.</td><td>₱8,800</td><td>Sep 2026</td><td><span class="badge b-green">Active</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== TICKETS ===== -->
+      <div class="dash-page" id="pg-tickets">
+        <div class="stat-row">
+          <div class="sc"><div class="sl">Open</div><div class="sv">3</div><div class="ss red">Urgent</div></div>
+          <div class="sc"><div class="sl">In Review</div><div class="sv">2</div></div>
+          <div class="sc"><div class="sl">Resolved (Month)</div><div class="sv">24</div></div>
+          <div class="sc"><div class="sl">Avg. Resolution</div><div class="sv">1.4 days</div></div>
+        </div>
+        <div class="cc">
+          <h3>Maintenance Tickets
+            <div class="btn-row">
+              <select style="padding:7px 10px;border:1px solid #ddd;border-radius:7px;font-size:12px;cursor:pointer"><option>All status</option><option>Open</option><option>In review</option><option>Done</option></select>
+              <button class="btn-blue" onclick="openModal('m-new-ticket')">➕ New Ticket</button>
+            </div>
+          </h3>
+          <table>
+            <thead><tr><th>#</th><th>Issue</th><th>Tenant</th><th>Unit</th><th>Priority</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody>
+              <tr class="clickable-row" onclick="openModal('m-ticket-detail')"><td style="color:#aaa">#1042</td><td><strong>Leaking faucet</strong><br><small style="color:#aaa">Kitchen sink</small></td><td>Marco R.</td><td>Unit 4B</td><td><span class="badge b-red">High</span></td><td><span class="badge b-yellow">Open</span></td><td>Mar 19</td></tr>
+              <tr class="clickable-row" onclick="openModal('m-ticket-detail')"><td style="color:#aaa">#1041</td><td><strong>AC not cooling</strong></td><td>Ana T.</td><td>Unit 2A</td><td><span class="badge b-orange">Medium</span></td><td><span class="badge b-blue">In review</span></td><td>Mar 18</td></tr>
+              <tr class="clickable-row" onclick="openModal('m-ticket-detail')"><td style="color:#aaa">#1040</td><td><strong>Broken door lock</strong></td><td>Lito C.</td><td>Unit 1C</td><td><span class="badge b-red">High</span></td><td><span class="badge b-yellow">Open</span></td><td>Mar 17</td></tr>
+              <tr class="clickable-row" onclick="openModal('m-ticket-detail')"><td style="color:#aaa">#1039</td><td><strong>No hot water</strong></td><td>Rosa S.</td><td>Unit 6B</td><td><span class="badge b-orange">Medium</span></td><td><span class="badge b-blue">In review</span></td><td>Mar 16</td></tr>
+              <tr class="clickable-row" onclick="openModal('m-ticket-detail')"><td style="color:#aaa">#1038</td><td><strong>Lock replacement</strong></td><td>Jose M.</td><td>Unit 7C</td><td><span class="badge b-gray">Low</span></td><td><span class="badge b-green">Done</span></td><td>Mar 15</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== PAYMENTS ===== -->
+      <div class="dash-page" id="pg-payments">
+        <div class="stat-row">
+          <div class="sc"><div class="sl">Collected This Month</div><div class="sv">₱124,500</div><div class="ss">+8% vs last month</div></div>
+          <div class="sc"><div class="sl">Overdue</div><div class="sv">₱15,000</div><div class="ss red">2 tenants</div></div>
+          <div class="sc"><div class="sl">Pending</div><div class="sv">5</div><div class="ss warn">payments</div></div>
+          <div class="sc"><div class="sl">Total This Year</div><div class="sv">₱1.42M</div></div>
+        </div>
+        <div class="cc">
+          <h3>Payment Records
+            <div class="btn-row">
+              <select style="padding:7px 10px;border:1px solid #ddd;border-radius:7px;font-size:12px;cursor:pointer"><option>All status</option><option>Paid</option><option>Pending</option><option>Overdue</option></select>
+              <button class="btn-outline" onclick="showToast('Exporting CSV...', '')">📥 Export</button>
+              <button class="btn-blue" onclick="openModal('m-record-pay')">➕ Record Payment</button>
+            </div>
+          </h3>
+          <table>
+            <thead><tr><th>Tenant</th><th>Unit</th><th>Amount</th><th>Due</th><th>Paid On</th><th>Method</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Marco Reyes</td><td>Unit 3A</td><td>₱8,500</td><td>Mar 5</td><td>Mar 3</td><td>GCash</td><td><span class="badge b-green">Paid</span></td></tr>
+              <tr><td>Ana Torres</td><td>Unit 2B</td><td>₱9,200</td><td>Mar 5</td><td>Mar 5</td><td>Bank transfer</td><td><span class="badge b-green">Paid</span></td></tr>
+              <tr><td>Lito Cruz</td><td>Unit 7A</td><td>₱9,000</td><td>Mar 5</td><td>—</td><td>—</td><td><span class="badge b-yellow">Pending</span></td></tr>
+              <tr><td>Rosa Santos</td><td>Unit 6B</td><td>₱7,500</td><td>Mar 5</td><td>—</td><td>—</td><td><span class="badge b-red">Overdue</span></td></tr>
+              <tr><td>Jose Mendoza</td><td>Unit 4A</td><td>₱8,800</td><td>Mar 5</td><td>Mar 4</td><td>Maya</td><td><span class="badge b-green">Paid</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== REPORTS ===== -->
+      <div class="dash-page" id="pg-reports">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <div class="cc" style="width:240px;cursor:pointer" onclick="showToast('Generating report...','')"><div style="font-size:28px;margin-bottom:7px">💳</div><h3 style="display:block;margin-bottom:6px">Rent Collection</h3><p style="font-size:13px;color:#666">Monthly summary of payments and overdue.</p><br><small style="color:#aaa">Last: Mar 2026</small></div>
+          <div class="cc" style="width:240px;cursor:pointer" onclick="showToast('Generating report...','')"><div style="font-size:28px;margin-bottom:7px">👥</div><h3 style="display:block;margin-bottom:6px">Occupancy Report</h3><p style="font-size:13px;color:#666">Occupancy rates by property and month.</p><br><small style="color:#aaa">Last: Mar 2026</small></div>
+          <div class="cc" style="width:240px;cursor:pointer" onclick="showToast('Generating report...','')"><div style="font-size:28px;margin-bottom:7px">🔧</div><h3 style="display:block;margin-bottom:6px">Maintenance Report</h3><p style="font-size:13px;color:#666">Ticket trends and resolution times.</p><br><small style="color:#aaa">Last: Mar 2026</small></div>
+          <div class="cc" style="width:240px;cursor:pointer" onclick="showToast('Generating report...','')"><div style="font-size:28px;margin-bottom:7px">📈</div><h3 style="display:block;margin-bottom:6px">Income &amp; Expenses</h3><p style="font-size:13px;color:#666">Annual income breakdown per property.</p><br><small style="color:#aaa">Last: Mar 2026</small></div>
+          <div class="cc" style="width:240px;cursor:pointer" onclick="showToast('Generating report...','')"><div style="font-size:28px;margin-bottom:7px">📅</div><h3 style="display:block;margin-bottom:6px">Lease Expiry</h3><p style="font-size:13px;color:#666">Upcoming lease renewals in 90 days.</p><br><small style="color:#aaa">Last: Mar 2026</small></div>
+          <div class="cc" style="width:240px;cursor:pointer" onclick="showToast('Opening report builder...','')"><div style="font-size:28px;margin-bottom:7px">🛠️</div><h3 style="display:block;margin-bottom:6px">Custom Report</h3><p style="font-size:13px;color:#666">Build with your own date range and filters.</p><br><small style="color:#2563eb">Build now →</small></div>
+        </div>
+      </div>
+
+      <!-- ===== DOCUMENTS ===== -->
+      <div class="dash-page" id="pg-documents">
+        <div class="cc">
+          <h3>Document Library
+            <div class="btn-row">
+              <input type="text" placeholder="Search documents..." style="padding:7px 11px;border:1px solid #ddd;border-radius:7px;font-size:12px;outline:none">
+              <button class="btn-blue" onclick="openModal('m-upload-doc')">📎 Upload</button>
+            </div>
+          </h3>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+            <div style="background:#eff6ff;border-radius:9px;padding:13px;text-align:center;cursor:pointer" onclick="showToast('Opening leases...','')"><div style="font-size:24px;margin-bottom:5px">📄</div><div style="font-size:12px;font-weight:bold;color:#2563eb">Lease Agreements</div><div style="font-size:11px;color:#aaa">18 files</div></div>
+            <div style="background:#dcfce7;border-radius:9px;padding:13px;text-align:center;cursor:pointer" onclick="showToast('Opening receipts...','')"><div style="font-size:24px;margin-bottom:5px">🧾</div><div style="font-size:12px;font-weight:bold;color:#16a34a">Payment Receipts</div><div style="font-size:11px;color:#aaa">124 files</div></div>
+            <div style="background:#fef9c3;border-radius:9px;padding:13px;text-align:center;cursor:pointer" onclick="showToast('Opening IDs...','')"><div style="font-size:24px;margin-bottom:5px">🪪</div><div style="font-size:12px;font-weight:bold;color:#854d0e">Tenant IDs</div><div style="font-size:11px;color:#aaa">38 files</div></div>
+            <div style="background:#f1f5f9;border-radius:9px;padding:13px;text-align:center;cursor:pointer" onclick="showToast('Opening other docs...','')"><div style="font-size:24px;margin-bottom:5px">📁</div><div style="font-size:12px;font-weight:bold;color:#555">Other Documents</div><div style="font-size:11px;color:#aaa">12 files</div></div>
+          </div>
+          <p style="font-size:13px;font-weight:bold;color:#555;margin-bottom:9px">Recent files</p>
+          <div class="doc-item" onclick="showToast('Downloading...','success')"><div class="doc-ico">📄</div><div><div class="doc-name">Lease — Marco Reyes (Unit 3A).pdf</div><div class="doc-meta">Lease · 245 KB · Mar 1, 2026</div></div><div class="doc-size">245 KB</div></div>
+          <div class="doc-item" onclick="showToast('Downloading...','success')"><div class="doc-ico" style="background:#dcfce7">🧾</div><div><div class="doc-name">Receipt_Mar2026_AnaT_Unit2B.pdf</div><div class="doc-meta">Receipt · 82 KB · Mar 5, 2026</div></div><div class="doc-size">82 KB</div></div>
+          <div class="doc-item" onclick="showToast('Downloading...','success')"><div class="doc-ico" style="background:#fef9c3">🪪</div><div><div class="doc-name">ID_JoseMendoza_Unit4A.jpg</div><div class="doc-meta">Tenant ID · 1.2 MB · Feb 28, 2026</div></div><div class="doc-size">1.2 MB</div></div>
+        </div>
+      </div>
+
+      <!-- ===== MESSAGES ===== -->
+      <div class="dash-page" id="pg-messages">
+        <div class="chat-layout">
+          <div class="chat-sb">
+            <div class="chat-hd">Conversations</div>
+            <div class="chat-contact active">
+              <div class="avatar" style="width:32px;height:32px;font-size:11px">MR</div>
+              <div style="flex:1"><div class="c-name">Marco Reyes</div><div class="c-prev">About the leaking faucet...</div></div>
+              <div><div class="c-time">2h ago</div><div class="unread-dot" style="margin-top:4px"></div></div>
+            </div>
+            <div class="chat-contact">
+              <div class="avatar" style="width:32px;height:32px;font-size:11px;background:#7c3aed">AT</div>
+              <div style="flex:1"><div class="c-name">Ana Torres</div><div class="c-prev">Thanks for payment!</div></div>
+              <div class="c-time">Yesterday</div>
+            </div>
+            <div class="chat-contact">
+              <div class="avatar" style="width:32px;height:32px;font-size:11px;background:#0f766e">LC</div>
+              <div style="flex:1"><div class="c-name">Lito Cruz</div><div class="c-prev">Can I renew my lease?</div></div>
+              <div><div class="c-time">Mar 17</div><div class="unread-dot" style="margin-top:4px"></div></div>
+            </div>
+            <div class="chat-contact">
+              <div class="avatar" style="width:32px;height:32px;font-size:11px;background:#b45309">RS</div>
+              <div style="flex:1"><div class="c-name">Rosa Santos</div><div class="c-prev">I'll pay by Friday.</div></div>
+              <div class="c-time">Mar 16</div>
+            </div>
+          </div>
+          <div class="chat-win">
+            <div class="chat-top">
+              <div class="avatar" style="width:32px;height:32px;font-size:11px">MR</div>
+              <div><div class="c-name">Marco Reyes</div><div class="online">● Online · Unit 3A, Sunset Apartments</div></div>
+              <button class="btn-outline" style="margin-left:auto;font-size:12px" onclick="showToast('Calling Marco...','')">📞 Call</button>
+            </div>
+            <div class="chat-msgs">
+              <div class="msg recv"><div class="avatar" style="width:26px;height:26px;font-size:9px">MR</div><div><div class="msg-bubble">Good morning po! Yung faucet sa kitchen namin ay tumutulo talaga. Pwede po bang mag-request ng repair?</div><div class="msg-time">9:12 AM</div></div></div>
+              <div class="msg sent"><div class="avatar" style="width:26px;height:26px;font-size:9px;background:#555">JD</div><div><div class="msg-bubble">Good morning Marco! Mag-file ka lang ng maintenance ticket sa app para ma-assign namin agad.</div><div class="msg-time" style="text-align:right">9:15 AM</div></div></div>
+              <div class="msg recv"><div class="avatar" style="width:26px;height:26px;font-size:9px">MR</div><div><div class="msg-bubble">Na-submit na po. Available naman ako buong araw. Salamat po!</div><div class="msg-time">9:18 AM</div></div></div>
+              <div class="msg sent"><div class="avatar" style="width:26px;height:26px;font-size:9px;background:#555">JD</div><div><div class="msg-bubble">Papuntahin namin ang plumber around 2 PM. May update ka if may problema sa oras.</div><div class="msg-time" style="text-align:right">9:21 AM</div></div></div>
+            </div>
+            <div class="chat-input">
+              <input type="text" placeholder="Type a message..." id="msg-input">
+              <button class="btn-blue" onclick="sendMsg()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NOTIFICATIONS ===== -->
+      <div class="dash-page" id="pg-notifications">
+        <div class="cc">
+          <h3>Notifications <button class="btn-outline" style="font-size:11px" onclick="showToast('All marked as read','success')">Mark all read</button></h3>
+          <div class="notif unread"><div class="notif-ico" style="background:#fee2e2">🔧</div><div><div class="notif-title">New ticket — Unit 4B leaking faucet</div><div class="notif-desc">Marco Reyes submitted a request · Sunset Apartments</div></div><div class="notif-time"><span class="badge b-blue">New</span><br>2h ago</div></div>
+          <div class="notif unread"><div class="notif-ico" style="background:#fee2e2">💳</div><div><div class="notif-title">Overdue rent — Rosa Santos, Unit 6B</div><div class="notif-desc">₱7,500 is 3 days overdue · Villa Hermosa</div></div><div class="notif-time"><span class="badge b-red">Alert</span><br>3h ago</div></div>
+          <div class="notif unread"><div class="notif-ico" style="background:#fef9c3">📅</div><div><div class="notif-title">Lease expiring — Lito Cruz, Unit 7A</div><div class="notif-desc">Lease ends in 14 days · Sunset Apartments</div></div><div class="notif-time"><span class="badge b-yellow">Notice</span><br>Today</div></div>
+          <div class="notif"><div class="notif-ico" style="background:#dcfce7">✅</div><div><div class="notif-title">Rent paid — Marco Reyes, Unit 3A</div><div class="notif-desc">₱8,500 received via GCash</div></div><div class="notif-time">1h ago</div></div>
+          <div class="notif"><div class="notif-ico" style="background:#dbeafe">👤</div><div><div class="notif-title">New tenant added — Ana Torres</div><div class="notif-desc">Unit 2B · Bayside Residences</div></div><div class="notif-time">Today</div></div>
+        </div>
+      </div>
+
+      <!-- ===== SUPPORT ===== -->
+      <div class="dash-page" id="pg-support">
+        <div class="alert alert-blue" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div><strong>How can we help you?</strong><br><small>Browse articles, submit a ticket, or chat with our team. Mon–Sat, 8 AM–6 PM.</small></div>
+          <button class="btn-blue" onclick="showToast('Opening live chat...','')">💬 Live Chat</button>
+        </div>
+        <div style="display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap">
+          <div class="supp-card" style="flex:1;min-width:140px" onclick="showToast('Opening help articles...','')"><div class="sc-ico">📖</div><h4>Help Articles</h4><p>48 articles</p></div>
+          <div class="supp-card" style="flex:1;min-width:140px" onclick="openModal('m-support-ticket')"><div class="sc-ico">🎫</div><h4>Submit Ticket</h4><p>Avg. 4h response</p></div>
+          <div class="supp-card" style="flex:1;min-width:140px" onclick="showToast('Opening live chat...','')"><div class="sc-ico">💬</div><h4>Live Chat</h4><p style="color:#22c55e">● Online now</p></div>
+          <div class="supp-card" style="flex:1;min-width:140px" onclick="showToast('Calling support...','')"><div class="sc-ico">📞</div><h4>Call Support</h4><p>+63 2 8888 0000</p></div>
+        </div>
+        <div class="grid2">
+          <div class="cc">
+            <h3>Popular FAQs</h3>
+            <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I set up rent collection through GCash? <span>▼</span></div><div class="faq-a">Go to Rent &amp; Payments, click Payment Settings, then link your GCash number.</div></div>
+            <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I assign a ticket to a technician? <span>▼</span></div><div class="faq-a">Open the ticket from the Tickets page, then click "Assign". Enter the technician's name or contact.</div></div>
+            <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I add a new tenant? <span>▼</span></div><div class="faq-a">Go to Tenants and click "Add Tenant". Fill in their details, assign a unit, and set lease dates.</div></div>
+            <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How do I generate a monthly report? <span>▼</span></div><div class="faq-a">Go to Reports, click the report type, select your date range, and click Generate.</div></div>
+          </div>
+          <div>
+            <div class="cc" style="margin-bottom:13px">
+              <h3>My Support Tickets <a onclick="openModal('m-support-ticket')">New ticket</a></h3>
+              <table>
+                <tr><td>#S-0041 — Billing issue</td><td><span class="badge b-green">Resolved</span></td></tr>
+                <tr><td>#S-0038 — Feature request</td><td><span class="badge b-blue">In review</span></td></tr>
+                <tr><td>#S-0031 — Login issue</td><td><span class="badge b-green">Resolved</span></td></tr>
+              </table>
+            </div>
+            <div class="cc">
+              <h3>System Status</h3>
+              <p style="font-size:13px;color:#16a34a;font-weight:bold;margin-bottom:9px"><span class="status-dot"></span>All systems operational</p>
+              <table>
+                <tr><td>Dashboard</td><td><span class="badge b-green">Operational</span></td></tr>
+                <tr><td>Payments</td><td><span class="badge b-green">Operational</span></td></tr>
+                <tr><td>Notifications</td><td><span class="badge b-green">Operational</span></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SETTINGS ===== -->
+      <div class="dash-page" id="pg-settings">
+        <div class="profile-hd">
+          <div class="big-av">JD</div>
+          <div><h3>Juan dela Cruz</h3><p>Landlord · Davao City, Philippines · Pro Plan</p></div>
+          <button class="btn-outline" style="margin-left:auto" onclick="openModal('m-edit-profile')">✏️ Edit Profile</button>
+        </div>
+        <div class="settings-layout">
+          <div class="settings-menu">
+            <div class="sm-item active" onclick="showSettingsPanel('sp-profile', this)">👤 Profile</div>
+            <div class="sm-item" onclick="showSettingsPanel('sp-notifs', this)">🔔 Notifications</div>
+            <div class="sm-item" onclick="showSettingsPanel('sp-security', this)">🔒 Security</div>
+            <div class="sm-item" onclick="showSettingsPanel('sp-billing', this)">💳 Billing</div>
+            <div class="sm-item" onclick="showSettingsPanel('sp-appear', this)">🎨 Appearance</div>
+            <div class="sm-item" style="color:#dc2626" onclick="showSettingsPanel('sp-danger', this)">⚠️ Danger Zone</div>
+          </div>
+          <div>
+            <div class="settings-panel" id="sp-profile">
+              <div class="s-section">
+                <h3>Personal Information</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Update your name, email, and contact details.</p>
+                <div class="form-row"><div class="form-group"><label>First name</label><input type="text" value="Juan"></div><div class="form-group"><label>Last name</label><input type="text" value="dela Cruz"></div></div>
+                <div class="form-group"><label>Email</label><input type="email" value="juan@homesync.ph"></div>
+                <div class="form-group"><label>Phone</label><input type="tel" value="+63 917 123 4567"></div>
+                <div class="form-group"><label>Location</label><input type="text" value="Davao City, Philippines"></div>
+                <button class="btn-blue" onclick="showToast('Profile saved!','success')">Save changes</button>
+              </div>
+            </div>
+            <div class="settings-panel" id="sp-notifs" style="display:none">
+              <div class="s-section">
+                <h3>Email Notifications</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Choose which events trigger email alerts.</p>
+                <div class="toggle-row"><div class="t-label"><div class="t1">New ticket submitted</div><div class="t2">When a tenant submits a request</div></div><div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div></div>
+                <div class="toggle-row"><div class="t-label"><div class="t1">Rent received</div><div class="t2">When a tenant pays rent</div></div><div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div></div>
+                <div class="toggle-row"><div class="t-label"><div class="t1">Overdue payments</div><div class="t2">When payment is 3+ days late</div></div><div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div></div>
+                <div class="toggle-row"><div class="t-label"><div class="t1">Lease expiry warnings</div><div class="t2">30 days before a lease expires</div></div><div class="toggle on" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div></div>
+                <div class="toggle-row"><div class="t-label"><div class="t1">Weekly summary</div><div class="t2">Every Monday morning</div></div><div class="toggle" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div></div>
+              </div>
+            </div>
+            <div class="settings-panel" id="sp-security" style="display:none">
+              <div class="s-section">
+                <h3>Change Password</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Use a strong password to keep your account safe.</p>
+                <div class="form-group"><label>Current password</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>New password</label><input type="password" placeholder="Min. 8 characters"></div>
+                <div class="form-group"><label>Confirm new password</label><input type="password" placeholder="Repeat"></div>
+                <button class="btn-blue" onclick="showToast('Password updated!','success')">Update password</button>
+              </div>
+              <div class="s-section">
+                <h3>Two-Factor Authentication</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Add extra security to your account.</p>
+                <div class="toggle-row"><div class="t-label"><div class="t1">Enable 2FA via SMS</div><div class="t2">A code is sent to your phone on login</div></div><div class="toggle" onclick="this.classList.toggle('on')"><div class="t-knob"></div></div></div>
+              </div>
+            </div>
+            <div class="settings-panel" id="sp-billing" style="display:none">
+              <div class="s-section">
+                <h3>Current Plan</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">You are on the <strong>Pro plan</strong>.</p>
+                <div class="alert alert-blue" style="margin-bottom:11px"><strong>Pro — ₱1,650/month</strong><br><small>Up to 25 units · Renews April 1, 2026</small></div>
+                <div class="btn-row"><button class="btn-outline" onclick="showToast('Redirecting to billing...','')">Upgrade to Enterprise</button><button class="btn-outline" onclick="showToast('Invoice downloading...','success')">Download Invoice</button></div>
+              </div>
+              <div class="s-section">
+                <h3>Payment Method</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Card on file for billing.</p>
+                <div style="display:flex;align-items:center;gap:11px;padding:11px;border:1px solid #ddd;border-radius:8px">
+                  <span style="font-size:22px">💳</span>
+                  <div><div style="font-size:13px;font-weight:bold">Visa ending in 4242</div><div style="font-size:11px;color:#aaa">Expires 08/28</div></div>
+                  <button class="btn-outline" style="margin-left:auto;font-size:11px" onclick="showToast('Redirecting to update payment...','')">Update</button>
+                </div>
+              </div>
+            </div>
+            <div class="settings-panel" id="sp-appear" style="display:none">
+              <div class="s-section">
+                <h3>Theme</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Choose how HomeSync looks for you.</p>
+                <div style="display:flex;gap:10px">
+                  <div style="border:2px solid #2563eb;border-radius:9px;padding:13px 18px;text-align:center;cursor:pointer;background:#eff6ff">☀️<br><small style="color:#2563eb;font-weight:bold">Light</small></div>
+                  <div style="border:1px solid #ddd;border-radius:9px;padding:13px 18px;text-align:center;cursor:pointer">🌙<br><small style="color:#555">Dark</small></div>
+                  <div style="border:1px solid #ddd;border-radius:9px;padding:13px 18px;text-align:center;cursor:pointer">💻<br><small style="color:#555">System</small></div>
+                </div>
+              </div>
+              <div class="s-section">
+                <h3>Language &amp; Region</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">Set your preferred language and date format.</p>
+                <div class="form-row">
+                  <div class="form-group"><label>Language</label><select><option>English</option><option>Filipino</option></select></div>
+                  <div class="form-group"><label>Date format</label><select><option>MM/DD/YYYY</option><option>DD/MM/YYYY</option></select></div>
+                </div>
+                <button class="btn-blue" onclick="showToast('Preferences saved!','success')">Save</button>
+              </div>
+            </div>
+            <div class="settings-panel" id="sp-danger" style="display:none">
+              <div class="s-section">
+                <h3 style="color:#dc2626">⚠️ Danger Zone</h3>
+                <p style="font-size:12px;color:#666;margin-bottom:14px">These actions are permanent and cannot be undone.</p>
+                <div style="border:1px solid #fca5a5;border-radius:8px;padding:13px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:13px;font-weight:bold">Deactivate account</div><div style="font-size:12px;color:#aaa;margin-top:2px">Temporarily disables your account.</div></div>
+                  <button class="btn-red" onclick="openModal('m-deactivate')">Deactivate</button>
+                </div>
+                <div style="border:1px solid #fca5a5;border-radius:8px;padding:13px;display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:13px;font-weight:bold">Delete account</div><div style="font-size:12px;color:#aaa;margin-top:2px">Permanently deletes all your data.</div></div>
+                  <button class="btn-red" onclick="openModal('m-delete')">Delete account</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end db -->
+  </div><!-- end main-content -->
+</div><!-- end dashboard -->
+
+<!-- ===== MODALS ===== -->
+<div class="modal-overlay" id="m-add-property" onclick="if(event.target===this)closeModal('m-add-property')">
+  <div class="modal-box"><div class="modal-hd"><h3>Add New Property</h3><button class="modal-close" onclick="closeModal('m-add-property')">✕</button></div>
+  <div class="form-group"><label>Property name *</label><input type="text" placeholder="e.g. Sunset Apartments"></div>
+  <div class="form-group"><label>Full address *</label><input type="text" placeholder="Street, Barangay, City, Province"></div>
+  <div class="form-row"><div class="form-group"><label>Type</label><select><option>Apartment</option><option>House</option><option>Townhouse</option><option>Commercial</option></select></div><div class="form-group"><label>Number of units *</label><input type="number" placeholder="8" min="1"></div></div>
+  <div class="form-group"><label>Monthly rent per unit (₱)</label><input type="number" placeholder="8500"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-add-property')">Cancel</button><button class="btn-blue" onclick="closeModal('m-add-property');showToast('Property added!','success')">Add Property</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-add-tenant" onclick="if(event.target===this)closeModal('m-add-tenant')">
+  <div class="modal-box"><div class="modal-hd"><h3>Add New Tenant</h3><button class="modal-close" onclick="closeModal('m-add-tenant')">✕</button></div>
+  <div class="form-row"><div class="form-group"><label>First name *</label><input type="text" placeholder="Juan"></div><div class="form-group"><label>Last name *</label><input type="text" placeholder="dela Cruz"></div></div>
+  <div class="form-row"><div class="form-group"><label>Email</label><input type="email" placeholder="tenant@email.com"></div><div class="form-group"><label>Phone *</label><input type="tel" placeholder="+63 9XX XXX XXXX"></div></div>
+  <div class="form-row"><div class="form-group"><label>Property *</label><select><option>Sunset Apartments</option><option>Bayside Residences</option><option>Villa Hermosa</option></select></div><div class="form-group"><label>Unit *</label><input type="text" placeholder="Unit 3A"></div></div>
+  <div class="form-row"><div class="form-group"><label>Monthly rent (₱) *</label><input type="number" placeholder="8500"></div><div class="form-group"><label>Lease start *</label><input type="date"></div></div>
+  <div class="form-group"><label>Lease end *</label><input type="date"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-add-tenant')">Cancel</button><button class="btn-blue" onclick="closeModal('m-add-tenant');showToast('Tenant added & invite sent!','success')">Add Tenant</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-new-ticket" onclick="if(event.target===this)closeModal('m-new-ticket')">
+  <div class="modal-box"><div class="modal-hd"><h3>Create Maintenance Ticket</h3><button class="modal-close" onclick="closeModal('m-new-ticket')">✕</button></div>
+  <div class="form-group"><label>Issue title *</label><input type="text" placeholder="e.g. Leaking faucet in kitchen"></div>
+  <div class="form-row"><div class="form-group"><label>Property *</label><select><option>Sunset Apartments</option><option>Bayside Residences</option><option>Villa Hermosa</option></select></div><div class="form-group"><label>Unit *</label><input type="text" placeholder="Unit 4B"></div></div>
+  <div class="form-row"><div class="form-group"><label>Category</label><select><option>Plumbing</option><option>Electrical</option><option>HVAC</option><option>Structural</option><option>Other</option></select></div><div class="form-group"><label>Priority</label><select><option>Low</option><option>Medium</option><option>High</option><option>Urgent</option></select></div></div>
+  <div class="form-group"><label>Description</label><textarea placeholder="Describe the problem..." style="height:80px;resize:vertical"></textarea></div>
+  <div class="form-group"><label>Assign to (technician)</label><input type="text" placeholder="Technician name or contact"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-new-ticket')">Cancel</button><button class="btn-blue" onclick="closeModal('m-new-ticket');showToast('Ticket #1043 created!','success')">Create Ticket</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-record-pay" onclick="if(event.target===this)closeModal('m-record-pay')">
+  <div class="modal-box"><div class="modal-hd"><h3>Record Payment</h3><button class="modal-close" onclick="closeModal('m-record-pay')">✕</button></div>
+  <div class="form-group"><label>Tenant *</label><select><option>Marco Reyes — Unit 3A</option><option>Ana Torres — Unit 2B</option><option>Lito Cruz — Unit 7A</option><option>Rosa Santos — Unit 6B</option><option>Jose Mendoza — Unit 4A</option></select></div>
+  <div class="form-row"><div class="form-group"><label>Amount (₱) *</label><input type="number" placeholder="8500"></div><div class="form-group"><label>Date paid *</label><input type="date"></div></div>
+  <div class="form-group"><label>Payment method</label><select><option>GCash</option><option>Maya</option><option>Bank transfer</option><option>Cash</option></select></div>
+  <div class="form-group"><label>Reference / notes</label><input type="text" placeholder="Transaction reference or notes"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-record-pay')">Cancel</button><button class="btn-blue" onclick="closeModal('m-record-pay');showToast('Payment recorded!','success')">Record Payment</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-upload-doc" onclick="if(event.target===this)closeModal('m-upload-doc')">
+  <div class="modal-box"><div class="modal-hd"><h3>Upload Document</h3><button class="modal-close" onclick="closeModal('m-upload-doc')">✕</button></div>
+  <div style="border:2px dashed #ddd;border-radius:8px;padding:22px;text-align:center;margin-bottom:14px;cursor:pointer" onclick="showToast('File picker opened','')"><div style="font-size:32px;margin-bottom:7px">📎</div><p style="font-size:13px;color:#555">Click to select a file or drag it here</p><small style="color:#aaa">PDF, PNG, JPG up to 20MB</small></div>
+  <div class="form-group"><label>Document type</label><select><option>Lease agreement</option><option>Payment receipt</option><option>Tenant ID</option><option>Other</option></select></div>
+  <div class="form-group"><label>Related tenant (optional)</label><select><option>— None —</option><option>Marco Reyes</option><option>Ana Torres</option><option>Lito Cruz</option></select></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-upload-doc')">Cancel</button><button class="btn-blue" onclick="closeModal('m-upload-doc');showToast('Document uploaded!','success')">Upload</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-msg-tenant" onclick="if(event.target===this)closeModal('m-msg-tenant')">
+  <div class="modal-box"><div class="modal-hd"><h3>Send Message</h3><button class="modal-close" onclick="closeModal('m-msg-tenant')">✕</button></div>
+  <div class="form-group"><label>To *</label><select><option>All tenants (broadcast)</option><option>Marco Reyes — Unit 3A</option><option>Ana Torres — Unit 2B</option><option>Lito Cruz — Unit 7A</option><option>Rosa Santos — Unit 6B</option></select></div>
+  <div class="form-group"><label>Subject</label><input type="text" placeholder="e.g. Scheduled water interruption"></div>
+  <div class="form-group"><label>Message *</label><textarea placeholder="Type your message here..." style="height:100px;resize:vertical"></textarea></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-msg-tenant')">Cancel</button><button class="btn-blue" onclick="closeModal('m-msg-tenant');showToast('Message sent!','success')">Send</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-edit-profile" onclick="if(event.target===this)closeModal('m-edit-profile')">
+  <div class="modal-box"><div class="modal-hd"><h3>Edit Profile</h3><button class="modal-close" onclick="closeModal('m-edit-profile')">✕</button></div>
+  <div class="form-row"><div class="form-group"><label>First name</label><input type="text" value="Juan"></div><div class="form-group"><label>Last name</label><input type="text" value="dela Cruz"></div></div>
+  <div class="form-group"><label>Email</label><input type="email" value="juan@homesync.ph"></div>
+  <div class="form-group"><label>Phone</label><input type="tel" value="+63 917 123 4567"></div>
+  <div class="form-group"><label>Location</label><input type="text" value="Davao City, Philippines"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-edit-profile')">Cancel</button><button class="btn-blue" onclick="closeModal('m-edit-profile');showToast('Profile updated!','success')">Save changes</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-property-detail" onclick="if(event.target===this)closeModal('m-property-detail')">
+  <div class="modal-box"><div class="modal-hd"><h3>Sunset Apartments</h3><button class="modal-close" onclick="closeModal('m-property-detail')">✕</button></div>
+  <div style="background:#eff6ff;border-radius:8px;padding:13px;text-align:center;margin-bottom:14px"><div style="font-size:26px;font-weight:bold;color:#2563eb">8/8</div><div style="font-size:13px;color:#555">Units occupied · 100%</div></div>
+  <div class="drow"><span class="dl">Address</span><span class="dv">Quezon City, Metro Manila</span></div>
+  <div class="drow"><span class="dl">Type</span><span class="dv">Apartment building</span></div>
+  <div class="drow"><span class="dl">Total units</span><span class="dv">8</span></div>
+  <div class="drow"><span class="dl">Monthly income</span><span class="dv">₱68,000</span></div>
+  <div class="drow"><span class="dl">Open tickets</span><span class="dv" style="color:#dc2626">2</span></div>
+  <div class="drow"><span class="dl">Status</span><span class="dv"><span class="badge b-green">Active</span></span></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-property-detail')">Close</button><button class="btn-blue" onclick="showToast('Edit feature coming soon','')">Edit Property</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-tenant-detail" onclick="if(event.target===this)closeModal('m-tenant-detail')">
+  <div class="modal-box"><div class="modal-hd"><h3>Tenant Details</h3><button class="modal-close" onclick="closeModal('m-tenant-detail')">✕</button></div>
+  <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #eee">
+    <div class="avatar" style="width:44px;height:44px;font-size:14px">MR</div>
+    <div><div style="font-size:15px;font-weight:bold">Marco Reyes</div><div style="font-size:12px;color:#aaa">Unit 3A · Sunset Apartments</div></div>
+  </div>
+  <div class="drow"><span class="dl">Email</span><span class="dv">marco@email.com</span></div>
+  <div class="drow"><span class="dl">Phone</span><span class="dv">+63 917 000 0001</span></div>
+  <div class="drow"><span class="dl">Monthly rent</span><span class="dv">₱8,500</span></div>
+  <div class="drow"><span class="dl">Lease end</span><span class="dv">Dec 31, 2026</span></div>
+  <div class="drow"><span class="dl">Payment status</span><span class="dv"><span class="badge b-green">Paid</span></span></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-tenant-detail');showPage('messages',null)">💬 Message</button><button class="btn-blue" onclick="closeModal('m-tenant-detail');showPage('tickets',null)">View Tickets</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-ticket-detail" onclick="if(event.target===this)closeModal('m-ticket-detail')">
+  <div class="modal-box"><div class="modal-hd"><h3>Ticket #1042</h3><button class="modal-close" onclick="closeModal('m-ticket-detail')">✕</button></div>
+  <div style="margin-bottom:11px"><span class="badge b-yellow">Open</span> <span class="badge b-red">High priority</span> <span class="badge b-gray">Plumbing</span></div>
+  <div style="font-size:15px;font-weight:bold;margin-bottom:5px">Leaking faucet — Unit 4B</div>
+  <div style="font-size:12px;color:#666;background:#f9fafb;padding:11px;border-radius:8px;margin-bottom:13px;line-height:1.6">Kitchen sink faucet is dripping continuously. Water is wasting and it's making noise at night. Started 3 days ago.</div>
+  <div class="drow"><span class="dl">Submitted</span><span class="dv">March 19, 2026</span></div>
+  <div class="drow"><span class="dl">Tenant</span><span class="dv">Marco Reyes</span></div>
+  <div class="drow"><span class="dl">Unit</span><span class="dv">Unit 4B · Sunset Apartments</span></div>
+  <div class="drow"><span class="dl">Assigned to</span><span class="dv">—</span></div>
+  <div class="modal-footer" style="flex-direction:column;align-items:stretch">
+    <button class="btn-blue" onclick="showToast('Assigned to plumber!','success')">Assign to technician</button>
+    <button class="btn-outline" onclick="showToast('Marked as in review','');closeModal('m-ticket-detail')">Mark as in review</button>
+    <button style="background:#dcfce7;color:#16a34a;border:1px solid #86efac;border-radius:7px;padding:8px;font-size:12px;cursor:pointer" onclick="showToast('Ticket resolved!','success');closeModal('m-ticket-detail')">✅ Mark as resolved</button>
+  </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-filter" onclick="if(event.target===this)closeModal('m-filter')">
+  <div class="modal-box"><div class="modal-hd"><h3>Filter</h3><button class="modal-close" onclick="closeModal('m-filter')">✕</button></div>
+  <div class="form-group"><label>Status</label><select><option>All</option><option>Active</option><option>Inactive</option></select></div>
+  <div class="form-group"><label>Property type</label><select><option>All types</option><option>Apartment</option><option>House</option><option>Townhouse</option></select></div>
+  <div class="form-group"><label>Location</label><input type="text" placeholder="City or province"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-filter')">Clear</button><button class="btn-blue" onclick="closeModal('m-filter');showToast('Filter applied','')">Apply</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-support-ticket" onclick="if(event.target===this)closeModal('m-support-ticket')">
+  <div class="modal-box"><div class="modal-hd"><h3>Submit Support Ticket</h3><button class="modal-close" onclick="closeModal('m-support-ticket')">✕</button></div>
+  <div class="form-group"><label>Subject *</label><input type="text" placeholder="Brief description of your issue"></div>
+  <div class="form-row"><div class="form-group"><label>Category *</label><select><option>Billing</option><option>Technical issue</option><option>Account access</option><option>Feature request</option><option>Other</option></select></div><div class="form-group"><label>Priority</label><select><option>Normal</option><option>High</option><option>Urgent</option></select></div></div>
+  <div class="form-group"><label>Description *</label><textarea placeholder="Describe your issue..." style="height:100px;resize:vertical"></textarea></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-support-ticket')">Cancel</button><button class="btn-blue" onclick="closeModal('m-support-ticket');showToast('Ticket submitted! We respond within 4 hours.','success')">Submit</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-deactivate" onclick="if(event.target===this)closeModal('m-deactivate')">
+  <div class="modal-box"><div class="modal-hd"><h3>Deactivate Account</h3><button class="modal-close" onclick="closeModal('m-deactivate')">✕</button></div>
+  <div style="text-align:center;padding:10px 0 18px"><div style="font-size:44px;margin-bottom:10px">⚠️</div><p style="font-size:14px;font-weight:bold;margin-bottom:6px">Deactivate your account?</p><p style="font-size:13px;color:#666">Your account will be paused. Tenants won't be able to access their portals. You can reactivate anytime.</p></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-deactivate')">Cancel</button><button class="btn-red" onclick="closeModal('m-deactivate');showToast('Account deactivated.','')">Deactivate</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-delete" onclick="if(event.target===this)closeModal('m-delete')">
+  <div class="modal-box"><div class="modal-hd"><h3>Delete Account</h3><button class="modal-close" onclick="closeModal('m-delete')">✕</button></div>
+  <div style="text-align:center;padding:10px 0 18px"><div style="font-size:44px;margin-bottom:10px">🗑️</div><p style="font-size:14px;font-weight:bold;color:#dc2626;margin-bottom:6px">This cannot be undone</p><p style="font-size:13px;color:#666">All your properties, tenants, tickets, and documents will be permanently deleted.</p></div>
+  <div class="form-group"><label>Type DELETE to confirm</label><input type="text" placeholder="DELETE"></div>
+  <div class="modal-footer"><button class="btn-outline" onclick="closeModal('m-delete')">Cancel</button><button class="btn-red" onclick="location.href='index.html'">Delete permanently</button></div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+  var pageTitles = {
+    'overview':      ['Overview',         'Good morning, Juan 👋'],
+    'properties':    ['Properties',       'Manage your property portfolio'],
+    'tenants':       ['Tenants',          'View and manage all tenants'],
+    'tickets':       ['Tickets',          'Track maintenance requests'],
+    'payments':      ['Rent & Payments',  'Track rent and payments'],
+    'reports':       ['Reports',          'Analytics and insights'],
+    'documents':     ['Documents',        'Your digital document library'],
+    'messages':      ['Messages',         'Chat with your tenants'],
+    'notifications': ['Notifications',    'Stay on top of everything'],
+    'support':       ['Support & Help',   'Get help or contact our team'],
+    'settings':      ['Settings',         'Account preferences']
+  };
+
+  function showPage(name, clickedItem) {
+    // hide all pages
+    var pages = document.querySelectorAll('.dash-page');
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove('active');
+    }
+    document.getElementById('pg-' + name).classList.add('active');
+
+    // update sidebar active state
+    var items = document.querySelectorAll('.sb-item');
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.remove('active');
+    }
+    if (clickedItem) {
+      clickedItem.classList.add('active');
+    }
+
+    // update topbar title
+    if (pageTitles[name]) {
+      document.getElementById('page-title').textContent = pageTitles[name][0];
+      document.getElementById('page-sub').textContent = pageTitles[name][1];
+    }
+  }
+
+  var settingsPanels = ['sp-profile', 'sp-notifs', 'sp-security', 'sp-billing', 'sp-appear', 'sp-danger'];
+
+  function showSettingsPanel(panelId, clickedItem) {
+    for (var i = 0; i < settingsPanels.length; i++) {
+      var el = document.getElementById(settingsPanels[i]);
+      if (el) el.style.display = 'none';
+    }
+    document.getElementById(panelId).style.display = 'block';
+
+    var items = document.querySelectorAll('#pg-settings .sm-item');
+    for (var i = 0; i < items.length; i++) {
+      items[i].classList.remove('active');
+    }
+    if (clickedItem) clickedItem.classList.add('active');
+  }
+
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
+
+  function showToast(message, type) {
+    var wrap = document.getElementById('toast-wrap');
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = message;
+    wrap.appendChild(t);
+    setTimeout(function() {
+      t.style.opacity = '0';
+      t.style.transition = 'opacity 0.3s';
+      setTimeout(function() { t.remove(); }, 300);
+    }, 3000);
+  }
+
+  function sendMsg() {
+    var input = document.getElementById('msg-input');
+    if (input.value.trim() !== '') {
+      showToast('Message sent!', 'success');
+      input.value = '';
+    }
+  }
+
+  function toggleFaq(item) {
+    var answer = item.querySelector('.faq-a');
+    answer.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
