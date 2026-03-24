@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up — HomeSync</title>
+  <title>Login — HomeSync</title>
   <link rel="stylesheet" href="../ASSETS/style.css">
 </head>
 <body>
@@ -24,61 +24,45 @@
   <div class="auth-page">
     <div class="auth-card">
 
-      <h2>Create your account</h2>
-      <p class="auth-sub">Already have an account? <a href="login.html">Sign in</a></p>
+      <h2>Welcome back!</h2>
+      <p class="auth-sub">No account yet? <a href="signup.html">Sign up free</a></p>
 
-      <p style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">I am a:</p>
+      <p style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">Sign in as:</p>
       <div class="role-sel">
-        <a href="landlord-overview.html" class="role-opt selected">
-          🏠 Landlord<br>
-          <small style="font-weight: normal; color: #64748b;">I own property</small>
-        </a>
-        <a href="tenant-overview.html" class="role-opt">
-          👤 Tenant<br>
-          <small style="font-weight: normal; color: #64748b;">I rent property</small>
-        </a>
+        <a href="#" class="role-opt selected">🏠 Landlord</a>
+        <a href="#" class="role-opt">👤 Tenant</a>
       </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>First name *</label>
-          <input type="text" placeholder="Juan" required>
-        </div>
-        <div class="form-group">
-          <label>Last name *</label>
-          <input type="text" placeholder="dela Cruz" required>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Email Address *</label>
-        <input type="email" placeholder="Enter your email" required>
-      </div>
-
-      <div class="form-group">
-        <label>Password *</label>
-        <input type="password" placeholder="Minimum 8 characters" required>
-      </div>
-
-      <div class="form-group" style="display: flex; align-items: flex-start; gap: 8px;">
-        <input type="checkbox" id="terms" checked style="width: auto; margin-top: 3px; accent-color: #22c55e;">
-        <label for="terms" style="font-size: 12px; color: #94a3b8; font-weight: normal;">
-          I agree to the <a href="#" style="color: #22c55e;">Terms</a> and <a href="#" style="color: #22c55e;">Privacy Policy</a>
-        </label>
-      </div>
-
-      <a href="../LANDLORD DASHBOARD/landlord-overview.html" style="display: block; width: 100%; margin-bottom: 14px;">
-        <button class="btn-green-full" style="width: 100%; margin-bottom: 0;">Create account</button>
-      </a>
-
-      <div class="divider">— or —</div>
 
       <a href="#" class="social-btn">
         <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="16" height="16" alt="Google">
         Continue with Google
       </a>
 
-      <a class="back-link" href="index.html">← Back to home</a>
+      <div class="divider">— or sign in with email —</div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="Enter your email">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password">
+      </div>
+
+      <div class="forgot-link">
+        <a href="forgot-password.html">Forgot password?</a>
+      </div>
+
+      <a href="landlord-overview.html" style="display: block; width: 100%; margin-bottom: 14px;">
+        <button class="btn-green-full" style="width: 100%; margin-bottom: 0;">Sign in</button>
+      </a>
+
+      <p style="text-align: center; font-size: 12px; color: #64748b; margin-top: 4px;">
+        By signing in you agree to our <a href="#" style="color: #22c55e;">Terms</a> and <a href="#" style="color: #22c55e;">Privacy Policy</a>
+      </p>
+
+      <a class="back-link" href="../LANDING PAGE/index.html">← Back to home</a>
 
     </div>
   </div>
