@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay Rent — HomeSync</title>
+  <link rel="stylesheet" href="../ASSETS/style.css">
+</head>
+<body>
+<div class="dashboard">
+  <div class="sidebar">
+    <a class="sb-logo" href="index.html">Home<span>Sync</span></a>
+    <div class="sb-section">My Home</div>
+    <a class="sb-item" href="tenant-overview.html">📊 Overview</a>
+    <a class="sb-item active" href="tenant-rent.html">💳 Pay Rent</a>
+    <a class="sb-item" href="tenant-tickets.html">🔧 My Tickets <span class="sb-badge red">1</span></a>
+    <div class="sb-section">Account</div>
+    <a class="sb-item" href="tenant-lease.html">📋 My Lease</a>
+    <a class="sb-item" href="tenant-documents.html">📁 Documents</a>
+    <a class="sb-item" href="tenant-messages.html">💬 Messages <span class="sb-badge">2</span></a>
+    <a class="sb-item" href="tenant-notifications.html">🔔 Notifications <span class="sb-badge">3</span></a>
+    <a class="sb-item" href="tenant-settings.html">⚙️ Settings</a>
+    <a class="sb-item" href="login.html" style="color:#f87171">🚪 Logout</a>
+    <a class="sb-foot" href="tenant-settings.html"><div class="avatar purple">MR</div><div><div class="av-name">Marco Reyes</div><div class="av-role">Tenant · Unit 3A</div></div></a>
+  </div>
+  <div class="main-content">
+    <div class="topbar"><div><h1>Pay Rent</h1><p>View and manage your rent payments</p></div><div class="topbar-r"><a href="tenant-notifications.html" class="icon-btn">🔔</a><a href="tenant-settings.html"><div class="avatar purple">MR</div></a></div></div>
+    <div class="db">
+      <div class="cc" style="margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <div><div style="font-size:11px;color:#64748b;font-weight:bold;text-transform:uppercase;margin-bottom:3px">Next due</div><div style="font-size:26px;font-weight:bold;color:white">₱8,500</div><div style="font-size:12px;color:#22c55e;margin-top:2px">May 5, 2026 · No overdue balance</div></div>
+          <div style="background:#2e3840;border:1px solid #4a5568;border-radius:10px;padding:16px;min-width:200px">
+            <p style="font-size:12px;font-weight:bold;margin-bottom:10px">Choose payment method:</p>
+            <div class="pay-grid">
+              <div class="pay-opt selected"><div class="pay-icon">📱</div><div>GCash</div></div>
+              <div class="pay-opt"><div class="pay-icon">💜</div><div>Maya</div></div>
+              <div class="pay-opt"><div class="pay-icon">🏦</div><div>Bank Transfer</div></div>
+              <div class="pay-opt"><div class="pay-icon">💵</div><div>Cash</div></div>
+            </div>
+            <div class="form-group" style="margin-bottom:10px"><label>Reference number (optional)</label><input type="text" placeholder="e.g. GCash transaction ID"></div>
+            <button class="btn-green" style="width:100%;border-radius:8px;padding:10px;font-size:13px">Confirm Payment</button>
+          </div>
+        </div>
+      </div>
+      <div class="cc">
+        <h3>Payment History</h3>
+        <table>
+          <thead><tr><th>Month</th><th>Amount</th><th>Due Date</th><th>Paid On</th><th>Method</th><th>Reference</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>April 2026</td><td>₱8,500</td><td>Apr 5</td><td>Apr 3</td><td>GCash</td><td>GC-20260403-001</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>March 2026</td><td>₱8,500</td><td>Mar 5</td><td>Mar 3</td><td>GCash</td><td>GC-20260303-002</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>February 2026</td><td>₱8,500</td><td>Feb 5</td><td>Feb 5</td><td>Bank transfer</td><td>BDO-20260205-881</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>January 2026</td><td>₱8,500</td><td>Jan 5</td><td>Jan 7</td><td>GCash</td><td>GC-20260107-553</td><td><span class="badge b-green">Paid</span></td></tr>
+            <tr><td>December 2025</td><td>₱8,500</td><td>Dec 5</td><td>Dec 4</td><td>Maya</td><td>MAYA-20251204-220</td><td><span class="badge b-green">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

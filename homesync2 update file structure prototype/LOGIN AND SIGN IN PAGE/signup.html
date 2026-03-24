@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — HomeSync</title>
+  <link rel="stylesheet" href="../ASSETS/style.css">
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="../LANDING PAGE/index.html">Home<span>Sync</span></a>
+    <div class="nav-links">
+      <a href="../LANDING PAGE/index.html">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Contacts</a>
+    </div>
+    <div>
+      <a href="login.html"><button class="btn-login">Login</button></a>
+      <a href="signup.html"><button class="btn-signup">Sign Up</button></a>
+    </div>
+  </nav>
+
+  <div class="auth-page">
+    <div class="auth-card">
+
+      <h2>Create your account</h2>
+      <p class="auth-sub">Already have an account? <a href="login.html">Sign in</a></p>
+
+      <p style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">I am a:</p>
+      <div class="role-sel">
+        <a href="landlord-overview.html" class="role-opt selected">
+          🏠 Landlord<br>
+          <small style="font-weight: normal; color: #64748b;">I own property</small>
+        </a>
+        <a href="tenant-overview.html" class="role-opt">
+          👤 Tenant<br>
+          <small style="font-weight: normal; color: #64748b;">I rent property</small>
+        </a>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name *</label>
+          <input type="text" placeholder="Juan" required>
+        </div>
+        <div class="form-group">
+          <label>Last name *</label>
+          <input type="text" placeholder="dela Cruz" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Password *</label>
+        <input type="password" placeholder="Minimum 8 characters" required>
+      </div>
+
+      <div class="form-group" style="display: flex; align-items: flex-start; gap: 8px;">
+        <input type="checkbox" id="terms" checked style="width: auto; margin-top: 3px; accent-color: #22c55e;">
+        <label for="terms" style="font-size: 12px; color: #94a3b8; font-weight: normal;">
+          I agree to the <a href="#" style="color: #22c55e;">Terms</a> and <a href="#" style="color: #22c55e;">Privacy Policy</a>
+        </label>
+      </div>
+
+      <a href="../LANDLORD DASHBOARD/landlord-overview.html" style="display: block; width: 100%; margin-bottom: 14px;">
+        <button class="btn-green-full" style="width: 100%; margin-bottom: 0;">Create account</button>
+      </a>
+
+      <div class="divider">— or —</div>
+
+      <a href="#" class="social-btn">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" width="16" height="16" alt="Google">
+        Continue with Google
+      </a>
+
+      <a class="back-link" href="index.html">← Back to home</a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Support</a>
+    </div>
+    <p>© 2026 HomeSync Management System. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
